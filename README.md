@@ -89,8 +89,12 @@ python python/load_health_data.py
 
 The loader prints `Row in file 50000`, and the count it reads back from the table should also be 50000.
 
+## Limitations
 
-
+- The data is synthetic, so nothing here says anything about real patients or real heart disease risk.
+- The BMI mismatch is large (46,225 of 50,000 rows). The reported BMI does not appear to be calculated from weight and height, which is typical of generated data.
+- The units are assumed, not documented: weight in kg, height in cm, blood pressure in mmHg, blood sugar and cholesterol in mg/dL.
+- The pipeline loads the data once. It is not scheduled to run automatically.
 
    ## Author
 
