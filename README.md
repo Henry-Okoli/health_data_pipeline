@@ -16,6 +16,7 @@
 The data is a synthetic heart disease dataset from Kaggle, called "Heart Disease Prediction Dataset" (https://www.kaggle.com/datasets/miadul/heat-disease-predication-dataset/data). It was chosen maily for the need to work with health data. Synthetic means the records are enerated, so no real patients are involved.
 
 The dataset has 50,000 rows. I used a selected set of columns from it, including age, gender, weight, height, BMI, blood pressure and heart disease. The raw CSV is not stored in this repository. To run the project, download it from the link above and place it in the `data/` folder.
+Every column is described in [docs/data_dictionary.md](docs/data_dictionary.md).
 
 ## Project structure
 ```
@@ -24,7 +25,7 @@ health_data_pipeline/
 ├── requirements.txt       the Python packages needed
 ├── .gitignore             files Git must not track (secrets, data)
 ├── data/                  raw and cleaned CSV files (not in Git)
-├── docs/                  extra documentation
+├── docs/                  data_dictionary.md explains every column
 ├── python/
 │   ├── health_explore.py      look at the raw data
 │   ├── health_clean.py        check, flag and save the cleaned CSV
