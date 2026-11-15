@@ -49,6 +49,49 @@ I compared the data against two real-world rules.
 
 I flagged these rows instead of deleting them, so the original data stays intact and anyone using it can decide how to treat the flagged rows.
 
+## How to run it
+
+You need Python 3 and MariaDB installed.
+
+**1. Get the code and set up Python**
+
+git clone https://github.com/Henry-Okoli/health_data_pipeline.git
+cd health_data_pipeline
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+**2. Add the data**
+
+Download the dataset from the Kaggle link above. Save it in the `data/` folder as `synthetic_heart_disease_dataset_model.csv`.
+
+**3. Create the database and table**
+
+mariadb -e "CREATE DATABASE health_data;"
+mariadb health_data < sql/health_schema.sql
+
+**4. Create a database user and a `.env` file**
+
+Create a MariaDB user with SELECT, INSERT and DELETE permission on `health_data`. Then create a file called `.env` in the project folder with these five settings (use your own password):
+
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=health_loader
+DB_PASSWORD=your-password-here
+DB_NAME=health_data
+
+The `.env` file holds secrets, so it is listed in `.gitignore` and never uploaded to GitHub.
+
+**5. Run the pipeline**
+
+python python/health_clean.py
+python python/load_health_data.py
+
+The loader prints `Row in file 50000`, and the count it reads back from the table should also be 50000.
+
+
+
+
    ## Author
 
    Okoli Henry Onyeka
